@@ -1,0 +1,43 @@
+name: Release Crate
+
+on:
+  push:
+    branches:
+      - main # Change this to the branch you want to trigger the release on
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: actions/setup-rust@v1
+        with:
+          rust-version: stable
+
+      # Build your crate here if necessary
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          cargo install cargo-bump
+          cargo bump patch # Adjust the version bump as needed
+
+      - name: Publish Crate
+        run: cargo publish --token ${{ secrets.CARGO_TOKEN }} # Make sure to set up the CARGO_TOKEN secret
+
+      # Optionally, you can create a GitHub release for the new version
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.bump_version.outputs.new_version }}
+          release_name: Release v${{ steps.bump_version.outputs.new_version }}
+          draft: false
+          prerelease: false # Adjust if you want to create prereleases
