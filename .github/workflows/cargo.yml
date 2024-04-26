@@ -3,7 +3,7 @@ name: Release Crate
 on:
   push:
     branches:
-      - main # Change this to the branch you want to trigger the release on
+      - master # Change this to the branch you want to trigger the release on
 
 jobs:
   release:
@@ -24,7 +24,7 @@ jobs:
         id: bump_version
         run: |
           cargo install cargo-bump
-          cargo bump patch # Adjust the version bump as needed
+          cargo bump patch
 
       - name: Publish Crate
         run: cargo publish --token ${{ secrets.CARGO_TOKEN }} # Make sure to set up the CARGO_TOKEN secret
