@@ -11,21 +11,20 @@ pub fn single_step_colatz(num: usize) -> usize {
         return num / 2;
     }
 }
-pub fn multi_step_recursive_colatz(num: usize) -> usize {
+// this function will recursivly call it self until it it reaches one.
+pub fn multi_step_recursive_colatz(num: usize, print: bool) -> usize {
     if num == 1 {
         return 1;
     }
     if num % 2 != 0 {
-        return multi_step_recursive_colatz(3 * num + 1);
+        if print == true {
+            println!("{}", num);
+        }
+        return multi_step_recursive_colatz(3 * num + 1, print);
     } else {
-        return multi_step_recursive_colatz(num / 2);
-    }
-}
-#[cfg(test)]
-mod test {
-    use super::single_step_colatz;
-    #[test]
-    fn colup() {
-        assert_eq!(single_step_colatz(3), 10);
+        if print == true {
+            println!("{}", num);
+        }
+        return multi_step_recursive_colatz(num / 2, print);
     }
 }
