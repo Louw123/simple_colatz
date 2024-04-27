@@ -30,15 +30,7 @@ jobs:
           echo "New version: $new_version"
           # Update Cargo.toml with the new version
           sed -i "s/version = \"$current_version\"/version = \"$new_version\"/" Cargo.toml
+        
 
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ steps.bump_version.outputs.new_version }}
-          release_name: Release v${{ steps.bump_version.outputs.new_version }}
-          draft: false
-          prerelease: false
+      - name: cargo publish
+        run: cargo publish
