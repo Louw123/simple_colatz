@@ -16,7 +16,7 @@ This package only computes the colatz conjectiure. There are two functions.
 
 # how to install
 
-first install `cargo`
-then type in
+first install `cargo`.
+Then type in
 `cargo add simple_colatz`
-or add the `simple_colatz = "(version_here)"` to your Cargo.toml:
+or add the `simple_colatz = "(version_here)"` to your Cargo.toml.

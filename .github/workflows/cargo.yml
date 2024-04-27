@@ -1,11 +1,12 @@
 name: Release Package
-
+permissions:
+  contents: read
+  pages: write 
 on:
   push:
     branches:
       - main
       - master
-
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -30,7 +31,7 @@ jobs:
           echo "New version: $new_version"
           # Update Cargo.toml with the new version
           sed -i "s/version = \"$current_version\"/version = \"$new_version\"/" Cargo.toml
-        
-
+      - name: check for mistakes
+        run: cargo check
       - name: cargo publish
-        run: cargo publish --token ${{secret.CARGO_TOKEN }}
+        run: cargo publish --token ${{ secrets.CARGO_TOKEN }}
