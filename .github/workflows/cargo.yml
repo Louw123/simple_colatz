@@ -31,6 +31,7 @@ jobs:
           echo "New version: $new_version"
           # Update Cargo.toml with the new version
           sed -i "s/version = \"$current_version\"/version = \"$new_version\"/" Cargo.toml
-
+      - name: check for mistakes
+        run: cargo check
       - name: cargo publish
         run: cargo publish --token ${{ secrets.CARGO_TOKEN }}
