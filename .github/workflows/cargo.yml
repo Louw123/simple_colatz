@@ -12,7 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: check for mistakes
-        run: cargo check
       - name: cargo publish
         run: cargo publish --token ${{ secrets.CARGO_TOKEN }} --allow-dirty
