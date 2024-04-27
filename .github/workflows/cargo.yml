@@ -33,4 +33,4 @@ jobs:
         
 
       - name: cargo publish
-        run: cargo publish
+        run: cargo publish --token ${{secret.CARGO_TOKEN }}
