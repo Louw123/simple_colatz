@@ -32,4 +32,4 @@ jobs:
         
 
       - name: cargo publish
-        run: cargo publish --token ${{secret.CARGO_TOKEN }}
+        run: cargo publish --token ${{ secrets.CARGO_TOKEN }}
