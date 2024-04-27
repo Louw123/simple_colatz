@@ -31,12 +31,6 @@ jobs:
           echo "New version: $new_version"
           # Update Cargo.toml with the new version
           sed -i "s/version = \"$current_version\"/version = \"$new_version\"/" Cargo.toml
-      - name: install git
-        run: |
-          sudo apt-get install git
-          
-      - name: Git force push
-        run: git push --force
 
       - name: cargo publish
         run: cargo publish --token ${{ secrets.CARGO_TOKEN }}
