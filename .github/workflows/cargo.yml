@@ -1,5 +1,7 @@
 name: Release Package
-
+permissions:
+  contents: read
+  pages: write 
 on:
   push:
     branches:
@@ -34,6 +36,7 @@ jobs:
           sudo apt-get install git
           
       - name: Git force push
+          contents: write
         run: git push --force
 
       - name: cargo publish
