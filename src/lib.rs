@@ -28,3 +28,16 @@ pub fn multi_step_recursive_colatz(num: usize, print: bool) -> usize {
         return multi_step_recursive_colatz(num / 2, print);
     }
 }
+pub fn multi_step_nonrecursive_colatz(num: usize, print: bool) -> usize {
+    while num != 1 {
+        if num % 2 != 0 {
+            if print == true {
+                println!("{}", num);
+            }
+        } else {
+            if print == true {
+                println!("{}", num);
+            }
+        }
+    }
+}
